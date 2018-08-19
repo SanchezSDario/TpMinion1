@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Doodle.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Art/jungle-left-odskok@2x.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 17.558
+height = 24.4598
+
+[node name="Doodle" type="KinematicBody2D" index="0"]
+
+position = Vector2( 241.12, 467.641 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+gravity = null
+movement = null
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+position = Vector2( 5.96967, -11.0906 )
+scale = Vector2( 0.652248, 0.709407 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( 5.82358, 2.58829 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+
