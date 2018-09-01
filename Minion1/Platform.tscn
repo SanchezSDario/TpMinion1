@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 36.4517, 0.0458984 )
+extents = Vector2( 36.4517, 4.22235 )
 
 [node name="Platform" type="StaticBody2D"]
 
@@ -34,7 +34,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( -1.67302, -27.1537 )
+position = Vector2( -1.40472, -22.8518 )
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
