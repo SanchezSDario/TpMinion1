@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 36.4517, 4.22235 )
 
-[node name="Platform" type="StaticBody2D"]
+[node name="Platform" type="StaticBody2D" index="0"]
 
 position = Vector2( 251.569, 593.658 )
 scale = Vector2( 1.33619, 1 )
@@ -39,5 +39,16 @@ shape = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="2"]
+
+position = Vector2( -1.1096, -23.2703 )
+scale = Vector2( 3.62328, 0.374108 )
+rect = Rect2( -10, -10, 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
 
 

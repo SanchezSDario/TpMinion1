@@ -27,7 +27,9 @@ func fall():
 
 func jump(information):
 	#Calculates the next jump_foce of the Doodle
-	if information != null: jump_force = base_jump + information.collider.impulse
+	if information != null:
+		jump_force = base_jump + information.collider.impulse
+		get_parent().generate()
 
 func law_of_universal_gravitation(delta_time):
 	#Determines how much the Doodle will rise, eventually it's going to fall
@@ -43,9 +45,3 @@ func _on_Doodle_y_fall():
 		queue_free() #or hide()?
 		emit_signal("defeat")
 		$CollisionShape2D.disabled = true
-
-#func ignore_collision():
-#	get_node("CollisionShape2D").disabled = true
-#
-#func activate_collision():
-#	get_node("CollisionShape2D").disabled = false

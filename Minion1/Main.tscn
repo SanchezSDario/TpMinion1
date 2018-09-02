@@ -1,45 +1,29 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://Platform.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Doodle.tscn" type="PackedScene" id=3]
-[ext_resource path="res://HUD.tscn" type="PackedScene" id=4]
-[ext_resource path="res://DoodleCam.gd" type="Script" id=5]
+[ext_resource path="res://Doodle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://DoodleCam.gd" type="Script" id=4]
 
 [node name="Main" type="Node" index="0"]
 
 script = ExtResource( 1 )
-Platform = ExtResource( 2 )
 
-[node name="Doodle" parent="." index="0" instance=ExtResource( 3 )]
+[node name="Doodle" parent="." index="0" instance=ExtResource( 2 )]
 
 position = Vector2( 254.075, 432.479 )
 gravity = 20
 movement = 8
 base_jump = 35
 
-[node name="Platform" parent="." index="1" instance=ExtResource( 2 )]
-
-[node name="Platform2" parent="." index="2" instance=ExtResource( 2 )]
-
-position = Vector2( 128.536, 400.907 )
-
-[node name="Platform3" parent="." index="3" instance=ExtResource( 2 )]
-
-position = Vector2( 128.536, 68.9755 )
-
-[node name="Platform4" parent="." index="4" instance=ExtResource( 2 )]
-
-position = Vector2( 343.475, 206.373 )
-
-[node name="StartTimer" type="Timer" parent="." index="5"]
+[node name="StartTimer" type="Timer" parent="." index="1"]
 
 process_mode = 1
 wait_time = 2.0
 one_shot = true
 autostart = false
 
-[node name="ScoreTimer" type="Timer" parent="." index="6"]
+[node name="ScoreTimer" type="Timer" parent="." index="2"]
 
 process_mode = 0
 wait_time = 0.01
@@ -47,14 +31,14 @@ one_shot = false
 autostart = false
 _sections_unfolded = [ "Pause" ]
 
-[node name="StartPosition" type="Position2D" parent="." index="7"]
+[node name="StartPosition" type="Position2D" parent="." index="3"]
 
 position = Vector2( 250, 450 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="HUD" parent="." index="8" instance=ExtResource( 4 )]
+[node name="HUD" parent="." index="4" instance=ExtResource( 3 )]
 
-[node name="DoodleCam" type="Camera2D" parent="." index="9"]
+[node name="DoodleCam" type="Camera2D" parent="." index="5"]
 
 anchor_mode = 1
 rotating = false
@@ -78,7 +62,7 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 
 [connection signal="defeat" from="Doodle" to="." method="game_over"]
 
