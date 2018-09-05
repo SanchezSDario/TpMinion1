@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Doodle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://DoodleCam.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Sound/wav/the-wilhelm-scream-sound-effect.wav" type="AudioStream" id=5]
 
 [node name="Main" type="Node" index="0"]
 
@@ -15,6 +16,10 @@ position = Vector2( 254.075, 432.479 )
 gravity = 20
 movement = 8
 base_jump = 35
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Doodle" index="2"]
+
+rect = Rect2( -10, -10, 20, 20 )
 
 [node name="StartTimer" type="Timer" parent="." index="1"]
 
@@ -31,14 +36,9 @@ one_shot = false
 autostart = false
 _sections_unfolded = [ "Pause" ]
 
-[node name="StartPosition" type="Position2D" parent="." index="3"]
+[node name="HUD" parent="." index="3" instance=ExtResource( 3 )]
 
-position = Vector2( 250, 450 )
-_sections_unfolded = [ "Transform", "Z Index" ]
-
-[node name="HUD" parent="." index="4" instance=ExtResource( 3 )]
-
-[node name="DoodleCam" type="Camera2D" parent="." index="5"]
+[node name="DoodleCam" type="Camera2D" parent="." index="4"]
 
 anchor_mode = 1
 rotating = false
@@ -63,15 +63,31 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = ExtResource( 5 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 [connection signal="defeat" from="Doodle" to="." method="game_over"]
 
 [connection signal="y_fall" from="Doodle" to="Doodle" method="_on_Doodle_y_fall"]
+
+[connection signal="viewport_exited" from="Doodle/VisibilityNotifier2D" to="Doodle" method="_on_VisibilityNotifier2D_viewport_exited"]
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 
 [connection signal="start_game" from="HUD" to="." method="new_game"]
+
+[connection signal="finished" from="DeathSound" to="." method="_on_DeathSound_finished"]
 
 

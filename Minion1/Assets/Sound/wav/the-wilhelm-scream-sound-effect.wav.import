@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/the-wilhelm-scream-sound-effect.wav-a7a292404d6a30980dabf07d5d76869a.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/wav/the-wilhelm-scream-sound-effect.wav"
+dest_files=[ "res://.import/the-wilhelm-scream-sound-effect.wav-a7a292404d6a30980dabf07d5d76869a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

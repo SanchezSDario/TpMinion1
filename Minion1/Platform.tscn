@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Platform.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/platform.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/common-platform.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 36.4517, 4.22235 )
+extents = Vector2( 37.2838, 4.22235 )
 
-[node name="Platform" type="StaticBody2D" index="0"]
+[node name="Platform" type="StaticBody2D"]
 
 position = Vector2( 251.569, 593.658 )
 scale = Vector2( 1.33619, 1 )
@@ -20,13 +20,18 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
 }
 impulse = 0
+movable = false
+fragile = null
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
+position = Vector2( -1.34441, -14.5242 )
+scale = Vector2( 0.783667, 1 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -49,6 +54,17 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Lifetime" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[connection signal="viewport_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_entered"]
+
 [connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
+
+[connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]
 
 
