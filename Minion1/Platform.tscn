@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Platform.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/common-platform.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sound/wav/Jump.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -54,17 +55,15 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Lifetime" type="Timer" parent="." index="3"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
 
-process_mode = 1
-wait_time = 1.0
-one_shot = true
-autostart = false
-
-[connection signal="viewport_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_entered"]
+stream = ExtResource( 3 )
+volume_db = 5.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 [connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
-
-[connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]
 
 

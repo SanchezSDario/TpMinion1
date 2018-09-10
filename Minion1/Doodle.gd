@@ -28,7 +28,7 @@ func miyagi_technique():
 func jump_power(information):
 	#Calculates the next jump_foce of the Doodle
 	if information != null:
-		jump_force = base_jump + information.collider.impulse
+		jump_force = base_jump + information.collider.impulse()
 		information.collider.generate_platforms()
 		information.collider.count_jump()
 

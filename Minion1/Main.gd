@@ -7,6 +7,7 @@ var platform_generator_limit
 var counter
 var movable_counter
 var fragile_counter
+var powerUp_counter
 var y_1
 var y_2
 var viewport_rect
@@ -19,6 +20,7 @@ func _ready():
 	score = 0
 	movable_counter = 10
 	fragile_counter = 5
+	powerUp_counter = 15
 	platform_generator_limit = 0
 	y_1 = -50
 	y_2 = -200
@@ -56,6 +58,7 @@ func generate_platform():
 	fragile_platform(platform)
 	add_child(platform)
 	platform.translate(Vector2(x, y))
+	give_powerUp(platform)
 	platform.show()
 	platforms.append(platform)
 	y_1 += -50
@@ -78,6 +81,14 @@ func fragile_platform(plat):
 	if(counter >= fragile_counter):
 		plat.be_fragile()
 		fragile_counter += rand_range(3, 7)
+
+func give_powerUp(plat):
+	if(counter >= powerUp_counter):
+		plat.set_random_powerUp()
+		powerUp_counter += rand_range(15, 30)
+
+func broke_signal():
+	$Broke.play()
 
 func _on_DeathSound_finished():
 	get_tree().reload_current_scene()
