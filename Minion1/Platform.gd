@@ -11,15 +11,13 @@ export (bool) var fragile
 signal broke_signal
 var screensize
 var x_variable = 0
-var X_MOVEMENT
-var jumps
+var X_MOVEMENT = rand_range(0.5, 1.2)
+var jumps = 0
 var death = false
 var powerUp
 
 func _ready():
 	hide()
-	jumps = 0
-	X_MOVEMENT = rand_range(0.5, 1.2)
 	get_node("CollisionShape2D").one_way_collision =  true
 
 func be_movable():
@@ -33,13 +31,11 @@ func set_powerUp(pwrUp):
 
 func set_random_powerUp():
 	powerUp = powerUp_scene.instance()
-	powerUp.setRandomType()
-	powerUp.position = self.position
-	powerUp.translate(Vector2(0, -10))
-	powerUp.setSprite()
+	self.add_child(powerUp)
 
 func impulse():
-	if(powerUp != null): return powerUp.impulse()
+	if(powerUp != null):
+		return powerUp.impulse()
 	else: 
 		$AudioStreamPlayer.play()
 		return 0
@@ -80,14 +76,18 @@ func broke():
 
 func generate_platforms():
 	get_parent().generate(10)
-	if(powerUp != null): powerUp.generate_platforms(get_parent())
+	if(powerUp != null): powerUp.generate_platforms()
 
 func sprite_type():
 	if(movable): $Sprite.texture = mov_text
 	if(fragile): $Sprite.texture = broke_text
 	if(movable && fragile): $Sprite.texture = mov_broke_text
+	if(powerUp != null): 
+		powerUp.setSprite()
+		powerUp.position = position
+		powerUp.translate(Vector2(0,-0.5))
 
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
 	var doodle = get_parent().get_node("Doodle")
 	if((doodle != null) && doodle.position.y  < self.position.y + 20):
-		queue_free()
+		self.queue_free()

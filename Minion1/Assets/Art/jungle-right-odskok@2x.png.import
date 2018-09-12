@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/platform.png-fa6c1000359a082b3ed63552d71e9023.stex"
+path="res://.import/jungle-right-odskok@2x.png-eb2742d1572c03bffdd4690ff1a34a96.stex"
 
 [deps]
 
-source_file="res://Assets/Art/platform.png"
-dest_files=[ "res://.import/platform.png-fa6c1000359a082b3ed63552d71e9023.stex" ]
+source_file="res://Assets/Art/jungle-right-odskok@2x.png"
+dest_files=[ "res://.import/jungle-right-odskok@2x.png-eb2742d1572c03bffdd4690ff1a34a96.stex" ]
 
 [params]
 

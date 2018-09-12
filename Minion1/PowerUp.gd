@@ -7,12 +7,14 @@ var rocket_fx = load("res://Assets/Sound/wav/Misile.wav")
 export (int) var impulse
 var type
 var powerUps = [trampoline_text, rocket_text]
-var screensize
-
 
 func _ready():
-	screensize = get_tree().get_root().get_node("Main").viewport_rect.size
 	powerUps = [trampoline_text, rocket_text]
+	type = powerUps[randi() % powerUps.size()]
+
+func _process(delta):
+	setSprite()
+	pass
 
 func setRandomType():
 	type = powerUps[randi() % powerUps.size()]
@@ -31,6 +33,9 @@ func setSprite():
 	if(type == (trampoline_text)): $Sprite.texture = trampoline_text
 	if(type == (rocket_text)): $Sprite.texture = rocket_text
 
-func generate_platforms(main):
-	if(type == (trampoline_text)): main.generate(10)
-	if(type == (rocket_text)): main.generate(20)
+func generate_platforms():
+	if(type == (trampoline_text)): get_parent().get_parent().generate(10)
+	if(type == (rocket_text)): get_parent().get_parent().generate(20)
+
+func count_jump():
+	pass

@@ -1,31 +1,29 @@
 extends Node
 
-var score
+var score = 0
 var platform_scene = load("res://Platform.tscn")
-var platforms
-var platform_generator_limit
-var counter
-var movable_counter
-var fragile_counter
-var powerUp_counter
-var y_1
-var y_2
+var platforms = []
+var platform_generator_limit = 0
+var counter = 0
+var movable_counter = 10
+var fragile_counter = 5
+var powerUp_counter = 15
+var min_y_distance = -50
+var max_y_distance = -80
 var viewport_rect
+var new_position
+
+
 
 func _ready():
 	randomize()
 	viewport_rect = get_viewport()
-	platforms = []
-	counter = 0
-	score = 0
-	movable_counter = 10
-	fragile_counter = 5
-	powerUp_counter = 15
-	platform_generator_limit = 0
-	y_1 = -50
-	y_2 = -200
 	platforms.append(platform_scene.instance())
 	add_child(platforms.front())
+	new_position = platforms.back().position
+
+func _process(delta):
+	new_position = platforms.back().position
 
 func game_over():
 	$ScoreTimer.stop()
@@ -48,11 +46,9 @@ func _on_ScoreTimer_timeout():
 	$HUD.update_score(score)
 
 func generate_platform():
-	var new_position = platforms.back().position
 	var x = rand_range(-240, 240)
-	var y = rand_range(y_1 , y_2 - new_position.y)
+	var y = rand_range(min_y_distance , max_y_distance)
 	var platform = platform_scene.instance()
-	counter += 1
 	platform.set_name("Plataforma"+str(counter))
 	movable_platform(platform)
 	fragile_platform(platform)
@@ -61,8 +57,9 @@ func generate_platform():
 	give_powerUp(platform)
 	platform.show()
 	platforms.append(platform)
-	y_1 += -50
-	y_2 += -80
+	min_y_distance += -50
+	max_y_distance += -60
+	counter += 1
 
 func initialize(amount):
 	for i in range(amount): generate_platform()

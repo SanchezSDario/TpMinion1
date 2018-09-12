@@ -9,7 +9,7 @@
 custom_solver_bias = 0.0
 radius = 28.4026
 
-[node name="PowerUp" type="StaticBody2D" index="0"]
+[node name="PowerUp" type="StaticBody2D"]
 
 position = Vector2( 250.795, 570.786 )
 scale = Vector2( 0.338605, 0.366628 )
@@ -21,6 +21,7 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -31,6 +32,7 @@ impulse = null
 position = Vector2( -2.54474, 2.06128 )
 scale = Vector2( 0.242867, 0.411054 )
 texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -39,6 +41,7 @@ __meta__ = {
 
 position = Vector2( -1.3324, -0.276123 )
 shape = SubResource( 1 )
+one_way_collision = true
 __meta__ = {
 "_edit_group_": true
 }
@@ -48,7 +51,7 @@ __meta__ = {
 stream = ExtResource( 3 )
 volume_db = 5.0
 pitch_scale = 1.0
-autoplay = true
+autoplay = false
 mix_target = 0
 bus = "Master"
 

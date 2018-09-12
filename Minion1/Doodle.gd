@@ -4,6 +4,8 @@ signal defeat
 signal y_fall
 export (int) var gravity
 export (int) var movement
+var left_text = preload("res://Assets/Art/jungle-left-odskok@2x.png")
+var right_text = preload("res://Assets/Art/jungle-right-odskok@2x.png")
 
 export var base_jump = 20 #Proper jump force of the doodle
 var jump_force = 0 #Jump force gained by specific items in the world
@@ -37,8 +39,12 @@ func law_of_universal_gravitation(delta_time):
 	if (jump_force > 0): jump_force -= (gravity + jump_force)/2 * delta_time
 
 func move():
-	if Input.is_action_pressed("ui_left"): position.x -= movement
-	if Input.is_action_pressed("ui_right"): position.x += movement
+	if Input.is_action_pressed("ui_left"): 
+		position.x -= movement
+		$Sprite.texture = left_text
+	if Input.is_action_pressed("ui_right"):
+		position.x += movement
+		$Sprite.texture = right_text
 	position.x = clamp(position.x, 0, screensize.x)
 
 func _on_Doodle_y_fall():
